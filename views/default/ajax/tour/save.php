@@ -1,11 +1,14 @@
 <?php
 
-$target = get_input('target', null);
+$attrs = get_input('attrs');
 
-echo $target;
+$attr_options = array();
+foreach ($attrs as $key => $value) {
+	$attr_options[$value] = $value;
+}
 
 $form_vars = array(
-	'target' => $target,
+	'attrs' => $attr_options,
 	'description' => null,
 );
 

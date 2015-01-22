@@ -2,80 +2,118 @@
  *
  */
 define(function(require) {
-		var elgg = require("elgg");
-		var $ = require("jquery");
+	var elgg = require("elgg");
+	var $ = require("jquery");
 
-		$('[id]').css('border', '1px dashed red');
-		//$('[class]').css('border', '1px dashed orange');
+	var prevElement = null;
+	var selecting = true;
 
-/*
-		prevElement = null;
-		document.addEventListener('mousemove',
-		    function(e){
-		        var elem = e.target || e.srcElement;
-		        if (prevElement!= null) {prevElement.classList.remove("mouseOn");}
-		        elem.classList.add("mouseOn");
-		        prevElement = elem;
-		    },true);
-*/
-		var background = null;
-		var prevElement = null;
+	/**
+	 * Highlight element when mouse hovers over it
+	 *
+	 * @param {Object} e The element being hovered on
+	 */
+	$('*').hover(function(e) {
+		var elem = e.target || e.srcElement;
 
-		$('*').hover(function(e) {
-			var elem = e.target || e.srcElement;
+		if (prevElement != null) {
+			// Return original style to the previous element
+			$(prevElement).removeClass('elgg-tour-selecting');
+		}
 
-			if (background == null) {
-				background = $(elem).css('background-color');
-			}
-
-			if (prevElement != null) {
-				// Return original style to the previous element
-				$(prevElement).css('background-color', background);
-
-				background = $(elem).css('background-color');
-			}
-
+		if (selecting) {
 			// Set custom style to the current element
-			$(elem).css({'background-color': "red"});
+			$(elem).addClass('elgg-tour-selecting');
+		}
 
-			prevElement = elem;
-			//console.log(background);
-		});
+		prevElement = elem;
+	});
 
-		$('[id]').click(function(e) {
-			var id = $(this).attr('id');
-			//console.log(id);
+	/**
+	 * Open tour item form inside colorbox when user selects an item
+	 *
+	 * @param {Object} e The clicked element
+	 */
+	$('*').on('click', (function(e) {
+		if (selecting === false) {
+			return;
+		}
 
-			var href = elgg.get_site_url() + 'ajax/view/ajax/tour/save?target=' + id;
+		selecting = false;
 
-			$.colorbox({href: href});
+		var elem = e.target;
+		var attrs = getAttributes(elem);
+		var href = elgg.get_site_url() + 'ajax/view/ajax/tour/save';
 
-			e.preventDefault();
+		$.colorbox({
+			href: href,
+			data: {
+				attrs: attrs
+			},
+			onClosed: function() {
+				selecting = true;
+			},
+			onComplete: function() {
+				var selector = null;
 
-			return false;
-		});
-/*
-		// Get the form using ajax ajax/view/core/ajax/edit_comment
-		var getForm = elgg.ajax('ajax/view/ajax/discussion/reply/edit?guid=' + this.guid, {
-			success: function(html) {
-				// Add the form to DOM
-				that.$item.find('.elgg-body').first().append(html);
+				// Highlight the associated element when hovering radio options
+				$('.elgg-input-radios label').hover(
+					function(e) {
+						selector = $(this).find('[name=attrs]').val();
 
-				that.showForm();
-
-				var $form = that.getForm();
-
-				$form.find('.elgg-button-cancel').on('click', function () {
-					that.hideForm();
-					return false;
-				});
-
-				// save
-				$form.on('submit', function () {
-					that.submitForm();
-					return false;
-				});
+						$(selector).addClass('elgg-tour-selecting');
+					}, function(e) {
+						$(selector).removeClass('elgg-tour-selecting');
+					}
+				);
 			}
 		});
-*/
+
+		e.preventDefault();
+		e.stopPropagation();
+	}));
+
+	/**
+	 * Get id and classes of the element and its parent
+	 *
+	 * @param {Object} elem
+	 * @return {Array} attrs
+	 */
+	function getAttributes(elem) {
+		var attrs = [];
+
+		// Get id of current element
+		var id = $(elem).attr('id');
+		if (id !== undefined) {
+			attrs.push('#' + id);
+		}
+
+		// Get id of parent element
+		var parentId = $(elem).parent().attr('id');
+		if (parentId !== undefined) {
+			attrs.push('#' + parentId);
+		}
+
+		// Get classes of current element
+		var classes = $(elem).attr('class');
+		if (classes !== undefined) {
+			classes = classes.split(' ');
+
+			$(classes).each(function(key, value) {
+				attrs.push('.' + value);
+			});
+		}
+
+		// Get classes of parent element
+		var parentClasses = $(elem).parent().attr('class');
+		if (parentClasses !== undefined) {
+			classes = parentClasses.split(' ');
+
+			$(classes).each(function(key, value) {
+				attrs.push('.' + value);
+			});
+		}
+
+		return attrs;
+	}
 });

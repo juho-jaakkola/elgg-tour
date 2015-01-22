@@ -16,24 +16,23 @@ function tour_init() {
 	elgg_load_css('joyride');
 
 	elgg_require_js('elgg/tour/display');
-	elgg_require_js('elgg/tour/edit');
+	//elgg_require_js('elgg/tour/edit');
 
 	elgg_register_ajax_view('ajax/tour/save');
 
 	elgg_extend_view('page/elements/footer', 'tour/outline');
 
 	elgg_extend_view('css/elgg', 'css/tour');
+	elgg_extend_view('css/admin', 'css/tour_admin');
 
-	elgg_register_action('tour/save', __DIR__ . '/actions/tour/save.php');
+	elgg_register_action('tour/save', __DIR__ . '/actions/tour/save.php', 'admin');
+	elgg_register_action('tour/reorder', __DIR__ . '/actions/tour/reorder.php', 'admin');
+	elgg_register_action('tour_stop/delete', __DIR__ . '/actions/tour/delete.php', 'admin');
 
 	elgg_register_page_handler('tour', 'tour_page_handler');
 	elgg_register_page_handler('tour_stop', 'tour_page_handler'); // For convenience
 
-	elgg_register_menu_item('site', array(
-		'name' => 'tours',
-		'href' => 'admin/tour/list',
-		'text' => elgg_echo('tour:list'),
-	));
+	elgg_register_admin_menu_item('administer', 'tour', 'administer_utilities');
 
 	elgg_register_menu_item('topbar', array(
 		'name' => 'tour',
@@ -45,7 +44,7 @@ function tour_init() {
 }
 
 /**
- *
+ * Tour page handler
  *
  * @param array $page
  */
@@ -57,6 +56,7 @@ function tour_page_handler($page) {
 			echo elgg_view('resources/tour/edit');
 			break;
 		case 'add':
+			echo elgg_view('resources/tour/add');
 			break;
 	}
 

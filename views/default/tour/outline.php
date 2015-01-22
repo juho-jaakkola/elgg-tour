@@ -3,8 +3,12 @@
 $entities = elgg_get_entities_from_metadata(array(
 	'type' => 'object',
 	'subtype' => \Tour\Stop::SUBTYPE,
-	// TODO
-	//'metadata_name_value_pairs' => array(),
+	'order_by_metadata' => array(
+		'name' => 'order',
+		'direction' => 'ASC',
+		'as' => 'integer',
+	),
+	'limit' => false,
 ));
 
 $stops = '';

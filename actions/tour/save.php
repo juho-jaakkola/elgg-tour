@@ -27,11 +27,12 @@ $page = get_input('page');
 // Make sure we have the request URI instead of full URL
 $page = preg_replace(elgg_get_site_url(), '', $href);
 
-$entity->title = get_input('description');
+$entity->title = get_input('title');
 $entity->description = get_input('description');
 $entity->page = $page;
 $entity->target = get_input('target');
 $entity->access_id = get_input('access_id');
+$entity->order = 999; // TODO Figure out how to define when creating
 
 if (!$entity->save()) {
 	register_error(elgg_echo('tour:action:save:error'));

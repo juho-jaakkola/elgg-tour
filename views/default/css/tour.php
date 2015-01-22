@@ -11,3 +11,7 @@
 	background-color: transparent !important;
 	z-index: 10000 !important;
 }
+
+.joyride-tip-guide {
+	width: 500px !important;
+}

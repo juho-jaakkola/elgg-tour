@@ -4,15 +4,30 @@
  */
 
 $target_label = elgg_echo('tour:target');
+$target_desc = elgg_echo('tour:target:desc');
 $target_input = elgg_view('input/text', array(
 	'name' => 'target',
 	'value' => $vars['target'],
 ));
 
+$attrs_input = '';
+if ($vars['attrs']) {
+	$attrs_input = elgg_view('input/radio', array(
+		'name' => 'attrs',
+		'options' => $vars['attrs'],
+	));
+}
+
 $page_label = elgg_echo('tour:page');
 $page_input = elgg_view('input/text', array(
 	'name' => 'page',
 	'value' => $vars['page'],
+));
+
+$title_label = elgg_echo('title');
+$title_input = elgg_view('input/text', array(
+	'name' => 'title',
+	'value' => $vars['title'],
 ));
 
 $desc_label = elgg_echo('description');
@@ -50,7 +65,9 @@ $submit_input = elgg_view('input/submit', array(
 echo <<<HTML
 	<div>
 		<label>$target_label</label>
+		$attrs_input
 		$target_input
+		<span class="elgg-text-help">$target_desc</span>
 	</div>
 	<div>
 		<label>$page_label</label>
@@ -58,6 +75,10 @@ echo <<<HTML
 	</div>
 	<div>
 		$context_input
+	</div>
+	<div>
+		<label>$title_label</label>
+		$title_input
 	</div>
 	<div>
 		<label>$desc_label</label>

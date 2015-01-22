@@ -11,7 +11,7 @@ $target = substr($entity->target, 1);
 $type = ($prefix == '.') ? 'class' : 'id';
 
 echo <<<HTML
-	<li data-$type="{$target}">{$entity->description}</li>
+	<li data-$type="{$target}"><h3>{$entity->title}</h3>{$entity->description}</li>
 HTML;
 
 /*
