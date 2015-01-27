@@ -4,6 +4,7 @@
 define(function(require) {
     var elgg = require("elgg");
     var $ = require("jquery");
+	var guid = elgg.get_page_owner_guid();
 
 	/**
 	 * Request the server to save the current order
@@ -20,12 +21,10 @@ define(function(require) {
 			guids.push(guid);
 		});
 
-		elgg.action('tour/reorder', {
+		elgg.action('tour_page/reorder', {
 			data: {
+				guid: guid,
 				guids: guids,
-			},
-			success: function() {
-				console.log('Yeaah!');
 			}
 		});
 	};

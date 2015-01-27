@@ -43,7 +43,7 @@ define(function(require) {
 
 		var elem = e.target;
 		var attrs = getAttributes(elem);
-		var href = elgg.get_site_url() + 'ajax/view/ajax/tour/save';
+		var href = elgg.get_site_url() + 'ajax/view/ajax/tour_stop/save';
 
 		$.colorbox({
 			href: href,

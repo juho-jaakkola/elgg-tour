@@ -1,6 +1,6 @@
 <?php
 
-namespace Tour;
+namespace Tour\Stop;
 
 class Form {
 	/**
@@ -16,7 +16,6 @@ class Form {
 			'container_guid' => null,
 			'access_id' => ACCESS_PUBLIC,
 			'target' => null,
-			'page' => null,
 		);
 
 		if ($entity) {
@@ -27,6 +26,17 @@ class Form {
 
 		if (elgg_is_sticky_form('tour_stop')) {
 			// TODO
+		}
+
+		// TODO Use ElggBatch?
+		$pages = elgg_get_entities(array(
+			'type' => 'object',
+			'subtype' => \Tour\Page::SUBTYPE,
+			'limit' => false,
+		));
+
+		foreach ($pages as $page) {
+			$fields['page_options'][$page->guid] = $page->title;
 		}
 
 		return $fields;

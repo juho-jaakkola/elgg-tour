@@ -12,4 +12,4 @@ $form_vars = array(
 	'description' => null,
 );
 
-echo elgg_view_form('tour/save', array(), $form_vars);
+echo elgg_view_form('tour_stop/save', array(), $form_vars);

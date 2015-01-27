@@ -1,12 +1,25 @@
 <?php
 
 $guid = get_input('guid');
+$container_guid = get_input('container_guid');
+
+$container = get_entity($container_guid);
+
+if (!$container instanceof \Tour\Page) {
+	register_error(elgg_echo('tour:error:page_not_found'));
+	forward(REFERER);
+}
+
+if (!$container->canEdit()) {
+	register_error(elgg_echo('tour:error:unauthorized'));
+	forward(REFERER);
+}
 
 if ($guid) {
 	$entity = get_entity($guid);
 
 	if (!$entity instanceof \Tour\Stop) {
-		register_error(elgg_echo('tour:error:notfound'));
+		register_error(elgg_echo('tour:error:stop_not_found'));
 		forward(REFERER);
 	}
 
@@ -19,19 +32,13 @@ if ($guid) {
 
 	$entity = new \Tour\Stop;
 	$entity->owner_guid = $site->guid;
-	$entity->container_guid = $site->guid;
 }
 
-$page = get_input('page');
-
-// Make sure we have the request URI instead of full URL
-$page = preg_replace(elgg_get_site_url(), '', $href);
-
+$entity->container_guid = $container->guid;
 $entity->title = get_input('title');
 $entity->description = get_input('description');
-$entity->page = $page;
 $entity->target = get_input('target');
-$entity->access_id = get_input('access_id');
+$entity->access_id = $container->access_id;
 $entity->order = 999; // TODO Figure out how to define when creating
 
 if (!$entity->save()) {
@@ -40,16 +47,4 @@ if (!$entity->save()) {
 }
 
 system_message(elgg_echo('tour:action:save:success'));
-forward($page);
-
-/*
-$stops = elgg_get_entities_from_metadata(array(
-	'type' => 'object',
-	'subtype' => 'tour_stop',
-	'metadata_name_value_pairs',
-));
-
-if ($stops) {
-	$entity = array_pop($stops);
-}
-*/
+forward($container->getURL());

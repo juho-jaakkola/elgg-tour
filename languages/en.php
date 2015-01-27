@@ -5,7 +5,11 @@ return array(
 	'tour:no_results' => 'No results',
 	'tour:start' => 'Help',
 	'tour:not_found' => 'The item was not found',
-	'tour:add' => 'Add new item',
+	'tour:add' => 'Add new tour page',
+	'tour:stop:add' => 'Add new tour stop',
+	'tour:page:title' => 'Tour for the page: %s',
+
+	'tour:error:page_not_found' => 'The selected page is missing or invalid',
 
 	'tour:action:save:success' => 'Tour stop saved',
 	'tour:action:reorder:success' => 'Reordered %s items',
@@ -15,9 +19,16 @@ return array(
 	'tour:target' => 'Target element',
 	'tour:target:desc' => 'Enter .class or #id of the target element, or leave empty to display general information.',
 	'tour:page' => 'Page',
+	'tour:page:desc' => 'Select the page specific tour that this stop will be added to.',
 
-	'admin:administer_utilities:tour' => 'Feature tour',
+	'admin:administer_utilities:tour' => 'Feature tours',
+	'admin:administer_utilities:tour:view' => 'Feature tour',
+	'admin:administer_utilities:tour:add' => 'Add a new feature tour',
+	'admin:administer_utilities:tour:edit' => 'Edit feature tour',
+	'admin:administer_utilities:tour:stop:add' => 'Add a new feature tour stop',
+	'admin:administer_utilities:tour:stop:edit' => 'Edit feature tour stop',
 
+	'item:object:tour_page' => 'Tour pages',
 	'item:object:tour_stop' => 'Tour stops',
 
 	'tour:context:1' => 'Only this page',
