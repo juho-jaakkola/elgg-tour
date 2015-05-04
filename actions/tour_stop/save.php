@@ -32,6 +32,7 @@ if ($guid) {
 
 	$entity = new \Tour\Stop;
 	$entity->owner_guid = $site->guid;
+	$entity->order = 999;
 }
 
 $entity->container_guid = $container->guid;
@@ -39,7 +40,6 @@ $entity->title = get_input('title');
 $entity->description = get_input('description');
 $entity->target = get_input('target');
 $entity->access_id = $container->access_id;
-$entity->order = 999; // TODO Figure out how to define when creating
 
 if (!$entity->save()) {
 	register_error(elgg_echo('tour:action:save:error'));
