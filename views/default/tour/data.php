@@ -34,6 +34,7 @@ if ($pages) {
 			'direction' => 'ASC',
 			'as' => 'integer',
 		),
+		'order_by' => 'e.time_created ASC',
 		'limit' => false,
 	));
 }

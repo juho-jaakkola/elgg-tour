@@ -36,6 +36,7 @@ echo elgg_list_entities_from_metadata(array(
 		'direction' => 'ASC',
 		'as' => 'integer',
 	),
+	'order_by' => 'e.time_created ASC',
 	'no_results' => elgg_echo('tour:no_results'),
 	'list_class' => 'elgg-list-entity-tour mvl',
 ));
