@@ -20,7 +20,7 @@ function tour_init() {
 			'exports' => 'joyride',
 		));
 	} else {
-		elgg_register_css('hopscotch', '/mod/tour/vendors/hopscotch/hopscotch.min.css');
+		elgg_register_css('hopscotch', '/mod/tour/vendors/hopscotch/css/hopscotch.min.css');
 		elgg_load_css('hopscotch');
 
 		elgg_define_js('hopscotch', array(
