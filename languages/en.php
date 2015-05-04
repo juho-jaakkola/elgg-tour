@@ -35,4 +35,9 @@ return array(
 	'tour:context:2' => 'Only subpages of this page',
 	'tour:context:3' => 'This page and all of its subpages',
 	'tour:context:4' => 'All pages',
+
+	'tour:setting:library' => 'Javascript library',
+	'tour:setting:library:desc' => 'There are two tour libraries to choose from:
+<a href="http://zurb.com/playground/jquery-joyride-feature-tour-plugin">Joyride</a> and
+<a href="http://linkedin.github.io/hopscotch/">Hopscotch</a>',
 );

@@ -9,11 +9,25 @@ elgg_register_event_handler('init', 'system', 'tour_init');
  * Initialize the plugin.
  */
 function tour_init() {
-	elgg_register_css('joyride', '/mod/tour/vendors/joyride/joyride-2.1.css');
-	elgg_register_js('joyride', '/mod/tour/vendors/joyride/jquery.joyride-2.1.js');
+	$js_lib = elgg_get_plugin_setting('js_library', 'tour');
 
-	elgg_load_js('joyride');
-	elgg_load_css('joyride');
+	if ($js_lib == 'joyride') {
+		elgg_register_css('joyride', '/mod/tour/vendors/joyride/joyride-2.1.css');
+		elgg_load_css('joyride');
+
+		elgg_define_js('joyride', array(
+			'src' => '/mod/tour/vendors/joyride/jquery.joyride-2.1.js',
+			'exports' => 'joyride',
+		));
+	} else {
+		elgg_register_css('hopscotch', '/mod/tour/vendors/hopscotch/hopscotch.min.css');
+		elgg_load_css('hopscotch');
+
+		elgg_define_js('hopscotch', array(
+			'src' => '/mod/tour/vendors/hopscotch/hopscotch.min.js',
+			'exports' => 'hopscotch',
+		));
+	}
 
 	elgg_require_js('elgg/tour/display');
 	//elgg_require_js('elgg/tour/edit');
@@ -42,10 +56,13 @@ function tour_init() {
 		'text' => elgg_echo('tour:start'),
 		'id' => 'tour-start',
 		'section' => 'alt',
+		'data-library' => $js_lib,
 	));
 
 	elgg_register_plugin_hook_handler('register', 'menu:entity', array('Tour\Page\EntityMenu', 'setUp'));
 	elgg_register_plugin_hook_handler('register', 'menu:entity', array('Tour\Stop\EntityMenu', 'setUp'));
+
+	elgg_register_viewtype('json');
 }
 
 /**
@@ -56,6 +73,9 @@ function tour_init() {
 function tour_page_handler($page) {
 
 	switch ($page[0]) {
+		case 'data':
+			echo elgg_view('tour/data');
+			break;
 		case 'edit':
 			set_input('guid', $page[1]);
 			echo elgg_view('resources/tour/edit');
