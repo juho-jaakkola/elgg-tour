@@ -38,10 +38,6 @@ foreach ($entities as $entity) {
 	$stop->content = $entity->description;
 	$stop->placement = $entity->placement;
 
-	// TODO Make these configurable
-	$stop->xOffset = '-80px';
-	$stop->arrowOffset = '80px';
-
 	$tour->steps[] = $stop;
 }
 
