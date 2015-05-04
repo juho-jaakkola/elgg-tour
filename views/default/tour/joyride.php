@@ -19,11 +19,16 @@ $stops = '';
 foreach ($entities as $entity) {
 	$prefix = substr($entity->target, 0, 1);
 	$target = substr($entity->target, 1);
-	$location = $entity->placement;
 
 	$type = ($prefix == '.') ? 'class' : 'id';
 
-	$stops .= "<li data-options=\"tipLocation:{$location};\" data-$type=\"{$target}\"><h3>{$entity->title}</h3>{$entity->description}</li>";
+	$stops .= elgg_format_element('li',
+		array(
+			"data-$type" => $target,
+			'data-options' => "tipLocation: {$entity->placement};",
+		),
+		"<h3>{$entity->title}</h3>{$entity->description}"
+	);
 }
 
 echo "<ol hidden id=\"tour-outline\">$stops</ol>";
