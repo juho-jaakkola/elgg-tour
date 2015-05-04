@@ -39,6 +39,7 @@ $entity->container_guid = $container->guid;
 $entity->title = get_input('title');
 $entity->description = get_input('description');
 $entity->target = get_input('target');
+$entity->placement = get_input('placement');
 $entity->access_id = $container->access_id;
 
 if (!$entity->save()) {

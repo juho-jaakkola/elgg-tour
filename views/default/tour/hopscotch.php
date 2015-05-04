@@ -36,9 +36,9 @@ foreach ($entities as $entity) {
 	$stop->title = $entity->title;
 	$stop->target = $entity->target;
 	$stop->content = $entity->description;
+	$stop->placement = $entity->placement;
 
 	// TODO Make these configurable
-	$stop->placement = 'bottom';
 	$stop->xOffset = '-80px';
 	$stop->arrowOffset = '80px';
 

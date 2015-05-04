@@ -16,6 +16,7 @@ class Form {
 			'container_guid' => null,
 			'access_id' => ACCESS_PUBLIC,
 			'target' => null,
+			'placement' => null,
 		);
 
 		if ($entity) {

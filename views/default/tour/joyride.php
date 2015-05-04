@@ -19,10 +19,11 @@ $stops = '';
 foreach ($entities as $entity) {
 	$prefix = substr($entity->target, 0, 1);
 	$target = substr($entity->target, 1);
+	$location = $entity->placement;
 
 	$type = ($prefix == '.') ? 'class' : 'id';
 
-	$stops .= "<li data-$type=\"{$target}\"><h3>{$entity->title}</h3>{$entity->description}</li>";
+	$stops .= "<li data-options=\"tipLocation:{$location};\" data-$type=\"{$target}\"><h3>{$entity->title}</h3>{$entity->description}</li>";
 }
 
 echo "<ol hidden id=\"tour-outline\">$stops</ol>";

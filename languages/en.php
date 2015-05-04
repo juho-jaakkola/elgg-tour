@@ -20,6 +20,11 @@ return array(
 	'tour:target:desc' => 'Enter .class or #id of the target element, or leave empty to display general information.',
 	'tour:page' => 'Page',
 	'tour:page:desc' => 'Select the page specific tour that this stop will be added to.',
+	'tour:placement' => 'Placement',
+	'tour:left' => 'Left',
+	'tour:bottom' => 'Bottom',
+	'tour:right' => 'Right',
+	'tour:top' => 'Top',
 
 	'admin:administer_utilities:tour' => 'Feature tours',
 	'admin:administer_utilities:tour:view' => 'Feature tour',

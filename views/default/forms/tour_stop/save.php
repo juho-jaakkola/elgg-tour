@@ -38,6 +38,18 @@ $desc_input = elgg_view('input/longtext', array(
 	'value' => $vars['description'],
 ));
 
+$placement_label = elgg_echo('tour:placement');
+$placement_input = elgg_view('input/radio', array(
+	'name' => 'placement',
+	'value' => $vars['placement'],
+	'options' => array(
+		elgg_echo('tour:left') => 'left',
+		elgg_echo('tour:bottom') => 'bottom',
+		elgg_echo('tour:right') => 'right',
+		elgg_echo('tour:top') => 'top',
+	),
+));
+
 $guid_input = elgg_view('input/hidden', array(
 	'name' => 'guid',
 	'value' => $vars['guid'],
@@ -66,6 +78,10 @@ echo <<<HTML
 	<div>
 		<label>$desc_label</label>
 		$desc_input
+	</div>
+	<div>
+		<label>$placement_label</label>
+		$placement_input
 	</div>
 	<div>
 		$guid_input
