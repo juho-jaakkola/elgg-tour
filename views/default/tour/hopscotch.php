@@ -35,7 +35,9 @@ foreach ($entities as $entity) {
 	$stop = new stdClass();
 	$stop->title = $entity->title;
 	$stop->target = $entity->target;
-	$stop->content = $entity->description;
+	$stop->content = elgg_view('output/longtext', array(
+		'value' => $entity->description,
+	));
 	$stop->placement = $entity->placement;
 
 	$tour->steps[] = $stop;

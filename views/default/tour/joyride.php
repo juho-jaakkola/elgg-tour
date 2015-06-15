@@ -22,12 +22,16 @@ foreach ($entities as $entity) {
 
 	$type = ($prefix == '.') ? 'class' : 'id';
 
+	$description = elgg_view('output/longtext', array(
+		'value' => $entity->description,
+	));
+
 	$stops .= elgg_format_element('li',
 		array(
 			"data-$type" => $target,
 			'data-options' => "tipLocation: {$entity->placement};",
 		),
-		"<h3>{$entity->title}</h3>{$entity->description}"
+		"<h3>{$entity->title}</h3>{$description}"
 	);
 }
 
