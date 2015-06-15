@@ -3,6 +3,7 @@
 return array(
 	'tour:title:edit' => 'Editing contents for: %s',
 	'tour:no_results' => 'No results',
+	'tour:stops:none' => "There aren't yet any tour stops defined for this page. Click 'Add new tour stop' to add the first stop.",
 	'tour:start' => 'Help',
 	'tour:not_found' => 'The item was not found',
 	'tour:add' => 'Add new tour page',
@@ -17,7 +18,7 @@ return array(
 	'tour:action:delete:error' => 'Failed to delete the item',
 
 	'tour:target' => 'Target element',
-	'tour:target:desc' => 'Enter .class or #id of the target element, or leave empty to display general information.',
+	'tour:target:desc' => 'Enter class or id of the target element starting with the hash or the period character. For example <b>.elgg-menu-item-blog</b>. (If you are using the Joyride library, you can leave this empty to display general information.)',
 	'tour:page' => 'Page',
 	'tour:page:desc' => 'Select the page specific tour that this stop will be added to.',
 	'tour:placement' => 'Placement',
