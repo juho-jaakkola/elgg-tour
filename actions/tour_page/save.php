@@ -38,4 +38,4 @@ if (!$entity->save()) {
 }
 
 system_message(elgg_echo('tour:action:save:success'));
-forward('admin/administer_utilities/tour');
+forward("admin/administer_utilities/tour/view?guid={$entity->guid}");
