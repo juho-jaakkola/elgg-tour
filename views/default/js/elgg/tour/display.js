@@ -7,7 +7,6 @@ define(function(require) {
 
 	var link = $('#tour-start');
 	var library = link.attr('data-library');
-	var tour;
 
 	// Remove site URL to get the path
 	var path = window.location.href.replace(elgg.get_site_url(), '');
@@ -19,27 +18,25 @@ define(function(require) {
 		e.preventDefault();
 
 		require([library], function(lib) {
-			tour = lib;
-		});
+			elgg.get({
+				url: 'tour/data',
+				data: {'page': page},
+				success: function(data) {
+					if (library == 'hopscotch') {
+						var data = jQuery.parseJSON(data);
 
-		elgg.get({
-			url: 'tour/data',
-			data: {'page': page},
-			success: function(data) {
-				if (library == 'hopscotch') {
-					var data = jQuery.parseJSON(data);
+						lib.startTour(data);
+					} else {
+						$('body').append(data);
 
-					tour.startTour(data);
-				} else {
-					$('body').append(data);
-
-					$("#tour-outline").joyride({
-						autoStart: true,
-						modal: true,
-						expose: true
-					});
+						$("#tour-outline").joyride({
+							autoStart: true,
+							modal: true,
+							expose: true
+						});
+					}
 				}
-			}
+			});
 		});
 	});
 });
