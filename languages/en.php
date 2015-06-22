@@ -10,6 +10,10 @@ return array(
 	'tour:stop:add' => 'Add new tour stop',
 	'tour:page:title' => 'Tour for the page: %s',
 
+	// Action words for the tour steps
+	'done' => 'Done',
+	'skip' => 'Skip',
+
 	'tour:error:page_not_found' => 'The selected page is missing or invalid',
 
 	'tour:action:save:success' => 'Tour stop saved',
