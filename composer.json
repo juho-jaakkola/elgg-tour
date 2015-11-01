@@ -1,0 +1,23 @@
+{
+	"name": "juho-jaakkola/elgg-tour",
+	"type": "elgg-plugin",
+	"description": "Manage and display feature tours",
+	"homepage": "http://hypejunction.com",
+	"keywords": [
+		"elgg",
+		"plugin",
+		"tour",
+		"joyride",
+		"hopscotch"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Juho Jaakkola",
+			"email": ""
+		}
+	],
+	"extra": {
+		"installer-name": "tour"
+	}
+}
