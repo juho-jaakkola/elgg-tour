@@ -1,0 +1,22 @@
+{
+	"name": "juho-jaakkola/elgg-tour",
+	"type": "elgg-plugin",
+	"description": "Manage and display feature tours",
+	"keywords": [
+		"elgg",
+		"plugin",
+		"tour",
+		"joyride",
+		"hopscotch"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Juho Jaakkola",
+			"email": "juho@elgg.org"
+		}
+	],
+	"extra": {
+		"installer-name": "tour"
+	}
+}
