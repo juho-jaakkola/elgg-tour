@@ -14,7 +14,7 @@ class EntityMenu {
 	 * @param array  $params Menu parameter
 	 * @return array $menu   Array of ElggMenuItem objects
 	 */
-	public function setUp($hook, $type, $menu, $params) {
+	public static function setUp($hook, $type, $menu, $params) {
 		$handler = elgg_extract('handler', $params);
 
 		if (\Tour\Stop::SUBTYPE != $handler) {
