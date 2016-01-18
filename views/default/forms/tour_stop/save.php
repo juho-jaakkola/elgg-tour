@@ -11,7 +11,7 @@ $target_input = elgg_view('input/text', array(
 ));
 
 $attrs_input = '';
-if ($vars['attrs']) {
+if (isset($vars['attrs'])) {
 	$attrs_input = elgg_view('input/radio', array(
 		'name' => 'attrs',
 		'options' => $vars['attrs'],
