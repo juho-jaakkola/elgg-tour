@@ -40,11 +40,27 @@ $tour->i18n = array(
 
 $tour->steps = array();
 foreach ($entities as $entity) {
+
+	$title_key = "tour:title:{$entity->guid}";
+	$content_key = "tour:body:{$entity->guid}";
+
+	if (elgg_language_key_exists($title_key)) {
+		$title = elgg_echo($title_key);
+	} else {
+		$title = $entity->title;
+	}
+
+	if (elgg_language_key_exists($content_key)) {
+		$content = elgg_echo($content_key);
+	} else {
+		$content = $entity->description;
+	}
+
 	$stop = new stdClass();
-	$stop->title = $entity->title;
+	$stop->title = $title;
 	$stop->target = $entity->target;
 	$stop->content = elgg_view('output/longtext', array(
-		'value' => $entity->description,
+		'value' => $content,
 	));
 	$stop->placement = $entity->placement;
 

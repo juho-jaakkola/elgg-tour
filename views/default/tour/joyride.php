@@ -22,8 +22,23 @@ foreach ($entities as $entity) {
 
 	$type = ($prefix == '.') ? 'class' : 'id';
 
+	$title_key = "tour:title:{$entity->guid}";
+	$content_key = "tour:body:{$entity->guid}";
+
+	if (elgg_language_key_exists($title_key)) {
+		$title = elgg_echo($title_key);
+	} else {
+		$title = $entity->title;
+	}
+
+	if (elgg_language_key_exists($content_key)) {
+		$content = elgg_echo($content_key);
+	} else {
+		$content = $entity->description;
+	}
+
 	$description = elgg_view('output/longtext', array(
-		'value' => $entity->description,
+		'value' => $content,
 	));
 
 	$stops .= elgg_format_element('li',
@@ -31,7 +46,7 @@ foreach ($entities as $entity) {
 			"data-$type" => $target,
 			'data-options' => "tipLocation: {$entity->placement};",
 		),
-		"<h3>{$entity->title}</h3>{$description}"
+		"<h3>{$title}</h3>{$description}"
 	);
 }
 
