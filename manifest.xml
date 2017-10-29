@@ -3,11 +3,11 @@
 	<name>Tour</name>
 	<id>tour</id>
 	<author>Juho Jaakkola</author>
-	<version>1.0</version>
+	<version>1.1.0</version>
 	<description>Manage and display feature tours</description>
 	<license>GNU Public License version 2</license>
 	<requires>
 		<type>elgg_release</type>
-		<version>1.9.0</version>
+		<version>1.11.0</version>
 	</requires>
 </plugin_manifest>
